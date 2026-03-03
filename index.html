@@ -1,144 +1,148 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hitung Umur - Desa Slendro</title>
 
 <style>
-body{
-    font-family:Segoe UI, sans-serif;
-    background:linear-gradient(135deg,#0d6efd,#198754);
-    margin:0;
-    padding:20px;
-    display:flex;
-    justify-content:center;
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0d6efd, #198754);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.container{
-    width:100%;
-    max-width:420px;
+/* CONTAINER */
+.container {
+    width: 100%;
+    max-width: 420px;
 }
 
-/* ===== BANNER ===== */
-.banner{
-    position:relative;
-    border-radius:20px 20px 0 0;
-    overflow:hidden;
+/* BANNER */
+.banner img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.banner img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    display:block;
+/* CARD */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
 }
 
-/* ===== CARD ===== */
-.card{
-    background:white;
-    padding:90px 25px 25px;
-    border-radius:0 0 20px 20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.3);
-    text-align:center;
-    position:relative;
+.logo {
+    width: 130px;
+    margin-top: -70px;
+    margin-bottom: 10px;
 }
 
-/* ===== LOGO ===== */
-.logo{
-    width:200px;              /* diperbesar */
-    position:absolute;
-    top:-110px;               /* sedikit memotong banner */
-    left:50%;
-    transform:translateX(-50%);
+h2 {
+    margin: 10px 0 5px;
 }
 
-/* ===== TEXT ===== */
-h2{
-    margin-top:10px;
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.subtitle{
-    font-size:14px;
-    color:#666;
-    margin-bottom:20px;
+label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-top: 10px;
 }
 
-label{
-    font-size:14px;
-    font-weight:bold;
-    display:block;
-    text-align:left;
-    margin-top:12px;
+input, button {
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
 }
 
-input,button{
-    padding:11px;
-    margin-top:6px;
-    width:100%;
-    border-radius:10px;
-    border:1px solid #ccc;
-    font-size:15px;
+button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
 }
 
-button{
-    background:linear-gradient(45deg,#0d6efd,#198754);
-    color:white;
-    border:none;
-    cursor:pointer;
-    margin-top:18px;
-    font-weight:bold;
+button:hover {
+    background-color: #0b5ed7;
 }
 
-.result{
-    margin-top:20px;
-    font-weight:bold;
-    font-size:16px;
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.footer{
-    margin-top:25px;
-    font-size:12px;
-    color:#999;
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
 }
 
-/* ===== RUNNING TEXT TANPA SHAPE ===== */
-.running-profile{
-    margin-top:25px;
-    overflow:hidden;
-    white-space:nowrap;
+/* RUNNING PROFILE */
+.running-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    overflow: hidden;
 }
 
-.marquee{
-    display:inline-flex;
-    align-items:center;
-    gap:15px;
-    animation:jalan 18s linear infinite;
+.foto-bulat {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+    flex-shrink: 0;
 }
 
-/* pause saat disentuh / hover */
-.running-profile:hover .marquee,
-.running-profile:active .marquee{
-    animation-play-state:paused;
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
 }
 
-.foto-bulat{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    object-fit:cover;
-    flex-shrink:0;
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: jalan 18s linear infinite;
+    font-weight: 500;
 }
 
-.running-text{
-    white-space:nowrap;
+.marquee-text:hover {
+    animation-play-state: paused;
 }
 
-/* langsung muncul tanpa jeda */
-@keyframes jalan{
-    0%   { transform:translateX(0%); }
-    100% { transform:translateX(-100%); }
+@keyframes jalan {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
 }
+
 </style>
 </head>
 
@@ -146,13 +150,14 @@ button{
 
 <div class="container">
 
+    <!-- Banner -->
     <div class="banner">
         <img src="banner_desa.jpg" alt="Banner Desa">
     </div>
 
+    <!-- Card -->
     <div class="card">
 
-        <!-- Logo -->
         <img src="logo_desa_slendro.png" class="logo" alt="Logo Desa">
 
         <h2>Kalkulator Umur</h2>
@@ -168,11 +173,11 @@ button{
 
         <div class="result" id="hasil"></div>
 
-        <!-- Running Text -->
+        <!-- Running Profile -->
         <div class="running-profile">
+            <img src="foto_saya.jpg" class="foto-bulat" alt="Foto Profil">
             <div class="marquee">
-                <img src="foto_saya.jpg" class="foto-bulat">
-                <div class="running-text">
+                <div class="marquee-text">
                     👋 Selamat datang di Website Resmi Desa Slendro. Pemerintah Desa siap melayani masyarakat dengan sepenuh hati.
                 </div>
             </div>
@@ -184,52 +189,59 @@ button{
 </div>
 
 <script>
-function hitungUmur(){
-    const lahirVal=document.getElementById("tglLahir").value;
-    const targetVal=document.getElementById("tglTarget").value;
-    const hasil=document.getElementById("hasil");
 
-    if(!lahirVal){
-        hasil.innerHTML="Silakan pilih tanggal lahir.";
+function hitungUmur() {
+
+    const lahirVal = document.getElementById("tglLahir").value;
+    const targetVal = document.getElementById("tglTarget").value;
+    const hasil = document.getElementById("hasil");
+
+    if (!lahirVal) {
+        hasil.innerHTML = "Silakan pilih tanggal lahir.";
         return;
     }
 
-    const tglLahir=new Date(lahirVal);
-    const tanggalAcuan=targetVal?new Date(targetVal):new Date();
+    const tglLahir = new Date(lahirVal);
+    const tanggalAcuan = targetVal ? new Date(targetVal) : new Date();
 
-    if(tglLahir>tanggalAcuan){
-        hasil.innerHTML="Tanggal lahir tidak boleh lebih dari tanggal hitung.";
+    if (tglLahir > tanggalAcuan) {
+        hasil.innerHTML = "Tanggal lahir tidak boleh lebih dari tanggal hitung.";
         return;
     }
 
-    let tahun=tanggalAcuan.getFullYear()-tglLahir.getFullYear();
-    let bulan=tanggalAcuan.getMonth()-tglLahir.getMonth();
-    let hari=tanggalAcuan.getDate()-tglLahir.getDate();
+    let tahun = tanggalAcuan.getFullYear() - tglLahir.getFullYear();
+    let bulan = tanggalAcuan.getMonth() - tglLahir.getMonth();
+    let hari  = tanggalAcuan.getDate() - tglLahir.getDate();
 
-    if(hari<0){
+    if (hari < 0) {
         bulan--;
-        const bulanSebelumnya=new Date(tanggalAcuan.getFullYear(),tanggalAcuan.getMonth(),0);
-        hari+=bulanSebelumnya.getDate();
+        const bulanSebelumnya = new Date(
+            tanggalAcuan.getFullYear(),
+            tanggalAcuan.getMonth(),
+            0
+        );
+        hari += bulanSebelumnya.getDate();
     }
 
-    if(bulan<0){
+    if (bulan < 0) {
         tahun--;
-        bulan+=12;
+        bulan += 12;
     }
 
-    const formatIndonesia=tanggalAcuan.toLocaleDateString("id-ID",{
-        weekday:"long",
-        day:"2-digit",
-        month:"long",
-        year:"numeric"
+    const formatIndonesia = tanggalAcuan.toLocaleDateString("id-ID", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
     });
 
-    hasil.innerHTML=
-        "Umur pada "+formatIndonesia+" :<br>"+
-        tahun+" Tahun, "+
-        bulan+" Bulan, "+
-        hari+" Hari";
+    hasil.innerHTML =
+        "Umur pada " + formatIndonesia + " :<br>" +
+        tahun + " Tahun, " +
+        bulan + " Bulan, " +
+        hari + " Hari";
 }
+
 </script>
 
 </body>
