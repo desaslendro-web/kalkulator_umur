@@ -6,176 +6,162 @@
 <title>Hitung Umur - Desa Slendro</title>
 
 <style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0d6efd, #198754);
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#0d6efd,#198754);
+    margin:0;
+    padding:20px;
+    display:flex;
+    justify-content:center;
 }
 
-/* CONTAINER */
-.container {
-    width: 100%;
-    max-width: 420px;
-    animation: fadeIn 1s ease-in-out;
+.container{
+    width:100%;
+    max-width:420px;
 }
 
-/* BANNER */
-.banner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px 20px 0 0;
+/* ===== BANNER ===== */
+.banner{
+    position:relative;
+    border-radius:20px 20px 0 0;
+    overflow:hidden;
 }
 
-.banner img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
+.banner img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
 }
 
-.banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+/* ===== LOGO SETENGAH MENIMPA ===== */
+.logo-wrapper{
+    position:relative;
+    height:0;
 }
 
-/* LOGO FLOATING */
-.logo {
-    width: 180px;
-    position: absolute;
-    left: 50%;
-    bottom: -90px;
-    transform: translateX(-50%);
-    background: white;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    animation: float 3s ease-in-out infinite;
+.logo{
+    width:180px;
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:-90px; /* separuh ke banner, separuh ke card */
+    background:white;
+    padding:12px;
+    border-radius:50%;
+    box-shadow:0 15px 35px rgba(0,0,0,0.35);
 }
 
-/* CARD */
-.card {
-    background: white;
-    padding: 120px 25px 25px 25px;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    text-align: center;
+/* ===== CARD ===== */
+.card{
+    background:white;
+    padding:120px 25px 25px;
+    border-radius:0 0 20px 20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    text-align:center;
 }
 
-h2 {
-    margin: 10px 0 5px;
+h2{
+    margin:10px 0 5px;
 }
 
-.subtitle {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
+.subtitle{
+    font-size:14px;
+    color:#666;
+    margin-bottom:20px;
 }
 
-label {
-    font-size: 14px;
-    font-weight: bold;
-    display: block;
-    text-align: left;
-    margin-top: 12px;
+label{
+    font-size:14px;
+    font-weight:bold;
+    display:block;
+    text-align:left;
+    margin-top:12px;
 }
 
-input, button {
-    padding: 11px;
-    margin-top: 6px;
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 15px;
+input,button{
+    padding:11px;
+    margin-top:6px;
+    width:100%;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
 }
 
-input:focus {
-    border-color: #0d6efd;
-    outline: none;
-    box-shadow: 0 0 5px rgba(13,110,253,0.4);
+button{
+    background:linear-gradient(45deg,#0d6efd,#198754);
+    color:white;
+    border:none;
+    cursor:pointer;
+    margin-top:18px;
+    font-weight:bold;
 }
 
-button {
-    background: linear-gradient(45deg, #0d6efd, #198754);
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 18px;
-    font-weight: bold;
-    transition: 0.3s;
+button:hover{
+    opacity:0.9;
 }
 
-button:hover {
-    transform: scale(1.03);
-    opacity: 0.9;
+.result{
+    margin-top:20px;
+    font-weight:bold;
+    font-size:16px;
 }
 
-.result {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 16px;
+.footer{
+    margin-top:25px;
+    font-size:12px;
+    color:#999;
 }
 
-.footer {
-    margin-top: 25px;
-    font-size: 12px;
-    color: #999;
+/* ===== RUNNING PROFILE ===== */
+.running-profile{
+    margin-top:25px;
+    padding:14px;
+    border-radius:15px;
+    background:linear-gradient(45deg,rgba(13,110,253,0.15),rgba(25,135,84,0.15));
+    overflow:hidden;
+    position:relative;
 }
 
-/* RUNNING PROFILE MODERN */
-.running-profile {
-    margin-top: 25px;
-    padding: 14px;
-    border-radius: 15px;
-    background: linear-gradient(45deg, rgba(13,110,253,0.15), rgba(25,135,84,0.15));
-    overflow: hidden;
-    position: relative;
+/* area pause */
+.marquee-container{
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
 }
 
-.marquee-wrapper {
-    display: flex;
-    width: 200%;
-    animation: scroll 25s linear infinite;
+/* konten berjalan */
+.marquee-track{
+    display:inline-flex;
+    align-items:center;
+    gap:15px;
+    animation:marquee 22s linear infinite;
 }
 
-.marquee-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    width: 50%;
+/* pause saat disentuh / hover */
+.marquee-container:hover .marquee-track,
+.marquee-container:active .marquee-track{
+    animation-play-state:paused;
 }
 
-.foto-bulat {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #0d6efd;
+.foto-bulat{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #0d6efd;
+    flex-shrink:0;
 }
 
-.running-text {
-    white-space: nowrap;
-    font-weight: 500;
+.running-text{
+    white-space:nowrap;
+    font-weight:500;
 }
 
-/* ANIMATIONS */
-@keyframes scroll {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-}
-
-@keyframes float {
-    0%,100% { transform: translate(-50%,0px); }
-    50% { transform: translate(-50%,-8px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+/* animasi dari kanan full ke kiri full */
+@keyframes marquee{
+    0%   { transform:translateX(100%); }
+    100% { transform:translateX(-100%); }
 }
 </style>
 </head>
@@ -184,11 +170,17 @@ button:hover {
 
 <div class="container">
 
+    <!-- Banner -->
     <div class="banner">
         <img src="banner_desa.jpg" alt="Banner Desa">
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-wrapper">
         <img src="logo_desa_slendro.png" class="logo" alt="Logo Desa">
     </div>
 
+    <!-- Card -->
     <div class="card">
 
         <h2>Kalkulator Umur</h2>
@@ -204,24 +196,15 @@ button:hover {
 
         <div class="result" id="hasil"></div>
 
-        <!-- Running Modern -->
+        <!-- Running Profile -->
         <div class="running-profile">
-            <div class="marquee-wrapper">
-
-                <div class="marquee-content">
+            <div class="marquee-container">
+                <div class="marquee-track">
                     <img src="foto_saya.jpg" class="foto-bulat">
                     <div class="running-text">
                         👋 Selamat datang di Website Resmi Desa Slendro. Pemerintah Desa siap melayani masyarakat dengan sepenuh hati.
                     </div>
                 </div>
-
-                <div class="marquee-content">
-                    <img src="foto_saya.jpg" class="foto-bulat">
-                    <div class="running-text">
-                        👋 Selamat datang di Website Resmi Desa Slendro. Pemerintah Desa siap melayani masyarakat dengan sepenuh hati.
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -231,51 +214,51 @@ button:hover {
 </div>
 
 <script>
-function hitungUmur() {
-    const lahirVal = document.getElementById("tglLahir").value;
-    const targetVal = document.getElementById("tglTarget").value;
-    const hasil = document.getElementById("hasil");
+function hitungUmur(){
+    const lahirVal=document.getElementById("tglLahir").value;
+    const targetVal=document.getElementById("tglTarget").value;
+    const hasil=document.getElementById("hasil");
 
-    if (!lahirVal) {
-        hasil.innerHTML = "Silakan pilih tanggal lahir.";
+    if(!lahirVal){
+        hasil.innerHTML="Silakan pilih tanggal lahir.";
         return;
     }
 
-    const tglLahir = new Date(lahirVal);
-    const tanggalAcuan = targetVal ? new Date(targetVal) : new Date();
+    const tglLahir=new Date(lahirVal);
+    const tanggalAcuan=targetVal?new Date(targetVal):new Date();
 
-    if (tglLahir > tanggalAcuan) {
-        hasil.innerHTML = "Tanggal lahir tidak boleh lebih dari tanggal hitung.";
+    if(tglLahir>tanggalAcuan){
+        hasil.innerHTML="Tanggal lahir tidak boleh lebih dari tanggal hitung.";
         return;
     }
 
-    let tahun = tanggalAcuan.getFullYear() - tglLahir.getFullYear();
-    let bulan = tanggalAcuan.getMonth() - tglLahir.getMonth();
-    let hari = tanggalAcuan.getDate() - tglLahir.getDate();
+    let tahun=tanggalAcuan.getFullYear()-tglLahir.getFullYear();
+    let bulan=tanggalAcuan.getMonth()-tglLahir.getMonth();
+    let hari=tanggalAcuan.getDate()-tglLahir.getDate();
 
-    if (hari < 0) {
+    if(hari<0){
         bulan--;
-        const bulanSebelumnya = new Date(tanggalAcuan.getFullYear(), tanggalAcuan.getMonth(), 0);
-        hari += bulanSebelumnya.getDate();
+        const bulanSebelumnya=new Date(tanggalAcuan.getFullYear(),tanggalAcuan.getMonth(),0);
+        hari+=bulanSebelumnya.getDate();
     }
 
-    if (bulan < 0) {
+    if(bulan<0){
         tahun--;
-        bulan += 12;
+        bulan+=12;
     }
 
-    const formatIndonesia = tanggalAcuan.toLocaleDateString("id-ID", {
-        weekday: "long",
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
+    const formatIndonesia=tanggalAcuan.toLocaleDateString("id-ID",{
+        weekday:"long",
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
     });
 
-    hasil.innerHTML =
-        "Umur pada " + formatIndonesia + " :<br>" +
-        tahun + " Tahun, " +
-        bulan + " Bulan, " +
-        hari + " Hari";
+    hasil.innerHTML=
+        "Umur pada "+formatIndonesia+" :<br>"+
+        tahun+" Tahun, "+
+        bulan+" Bulan, "+
+        hari+" Hari";
 }
 </script>
 
