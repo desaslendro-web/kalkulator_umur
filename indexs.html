@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hitung Umur - Desa Slendro</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0d6efd, #198754);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* CONTAINER */
+.container {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* BANNER */
+.banner img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.logo {
+    width: 130px;
+    margin-top: -70px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin: 10px 0 5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+}
+
+input, button {
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #0b5ed7;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* RUNNING PROFILE */
+.running-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    overflow: hidden;
+}
+
+.foto-bulat {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+    flex-shrink: 0;
+}
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: jalan 18s linear infinite;
+    font-weight: 500;
+}
+
+.marquee-text:hover {
+    animation-play-state: paused;
+}
+
+@keyframes jalan {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Banner -->
+    <div class="banner">
+        <img src="banner_desa.jpg" alt="Banner Desa">
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+
+        <img src="logo_desa_slendro.png" class="logo" alt="Logo Desa">
+
+        <h2>Alat Hitung Umur</h2>
+        <div class="subtitle">Pemerintah Desa Slendro</div>
+
+        <label>Tanggal Lahir</label>
+        <input type="date" id="tglLahir">
+
+        <label>Tanggal Hitung (Opsional)</label>
+        <input type="date" id="tglTarget">
+
+        <button onclick="hitungUmur()">Hitung Umur</button>
+
+        <div class="result" id="hasil"></div>
+
+        <!-- Running Profile -->
+        <div class="running-profile">
+            <img src="foto_saya.jpg" class="foto-bulat" alt="Foto Profil">
+            <div class="marquee">
+                <div class="marquee-text">
+                    👋 Selamat datang di Website Resmi Desa Slendro. Pemerintah Desa siap melayani masyarakat dengan sepenuh hati.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">© 2026 Desa Slendro</div>
+
+    </div>
+</div>
+
+<script>
+function hitungUmur() {
+    const lahirVal = document.getElementById("tglLahir").value;
+    const targetVal = document.getElementById("tglTarget").value;
+    const hasil = document.getElementById("hasil");
+
+    if (!lahirVal) {
+        hasil.innerHTML = "Silakan pilih tanggal lahir.";
+        return;
+    }
+
+    const tglLahir = new Date(lahirVal);
+    const tanggalAcuan = targetVal ? new Date(targetVal) : new Date();
+
+    if (tglLahir > tanggalAcuan) {
+        hasil.innerHTML = "Tanggal lahir tidak boleh lebih dari tanggal hitung.";
+        return;
+    }
+
+    let tahun = tanggalAcuan.getFullYear() - tglLahir.getFullYear();
+    let bulan = tanggalAcuan.getMonth() - tglLahir.getMonth();
+    let hari = tanggalAcuan.getDate() - tglLahir.getDate();
+
+    if (hari < 0) {
+        bulan--;
+        const bulanSebelumnya = new Date(tanggalAcuan.getFullYear(), tanggalAcuan.getMonth(), 0);
+        hari += bulanSebelumnya.getDate();
+    }
+
+    if (bulan < 0) {
+        tahun--;
+        bulan += 12;
+    }
+
+    const formatIndonesia = tanggalAcuan.toLocaleDateString("id-ID", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
+
+    hasil.innerHTML =
+        "Umur pada tanggal : " + formatIndonesia + ":<br>" +
+        tahun + " Tahun, " +
+        bulan + " Bulan, " +
+        hari + " Hari";
+}
+</script>
+
+</body>
+</html>
