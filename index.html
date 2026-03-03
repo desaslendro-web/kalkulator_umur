@@ -7,7 +7,7 @@
 
 <style>
 body{
-    font-family:'Segoe UI',sans-serif;
+    font-family:Segoe UI, sans-serif;
     background:linear-gradient(135deg,#0d6efd,#198754);
     margin:0;
     padding:20px;
@@ -34,35 +34,28 @@ body{
     display:block;
 }
 
-/* ===== LOGO SETENGAH MENIMPA ===== */
-.logo-wrapper{
-    position:relative;
-    height:0;
-}
-
-.logo{
-    width:180px;
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top:-90px; /* separuh ke banner, separuh ke card */
-    background:white;
-    padding:12px;
-    border-radius:50%;
-    box-shadow:0 15px 35px rgba(0,0,0,0.35);
-}
-
 /* ===== CARD ===== */
 .card{
     background:white;
-    padding:120px 25px 25px;
+    padding:90px 25px 25px;
     border-radius:0 0 20px 20px;
     box-shadow:0 15px 35px rgba(0,0,0,0.3);
     text-align:center;
+    position:relative;
 }
 
+/* ===== LOGO ===== */
+.logo{
+    width:200px;              /* diperbesar */
+    position:absolute;
+    top:-110px;               /* sedikit memotong banner */
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* ===== TEXT ===== */
 h2{
-    margin:10px 0 5px;
+    margin-top:10px;
 }
 
 .subtitle{
@@ -97,10 +90,6 @@ button{
     font-weight:bold;
 }
 
-button:hover{
-    opacity:0.9;
-}
-
 .result{
     margin-top:20px;
     font-weight:bold;
@@ -113,34 +102,23 @@ button:hover{
     color:#999;
 }
 
-/* ===== RUNNING PROFILE ===== */
+/* ===== RUNNING TEXT TANPA SHAPE ===== */
 .running-profile{
     margin-top:25px;
-    padding:14px;
-    border-radius:15px;
-    background:linear-gradient(45deg,rgba(13,110,253,0.15),rgba(25,135,84,0.15));
-    overflow:hidden;
-    position:relative;
-}
-
-/* area pause */
-.marquee-container{
     overflow:hidden;
     white-space:nowrap;
-    position:relative;
 }
 
-/* konten berjalan */
-.marquee-track{
+.marquee{
     display:inline-flex;
     align-items:center;
     gap:15px;
-    animation:marquee 22s linear infinite;
+    animation:jalan 18s linear infinite;
 }
 
 /* pause saat disentuh / hover */
-.marquee-container:hover .marquee-track,
-.marquee-container:active .marquee-track{
+.running-profile:hover .marquee,
+.running-profile:active .marquee{
     animation-play-state:paused;
 }
 
@@ -149,18 +127,16 @@ button:hover{
     height:55px;
     border-radius:50%;
     object-fit:cover;
-    border:3px solid #0d6efd;
     flex-shrink:0;
 }
 
 .running-text{
     white-space:nowrap;
-    font-weight:500;
 }
 
-/* animasi dari kanan full ke kiri full */
-@keyframes marquee{
-    0%   { transform:translateX(100%); }
+/* langsung muncul tanpa jeda */
+@keyframes jalan{
+    0%   { transform:translateX(0%); }
     100% { transform:translateX(-100%); }
 }
 </style>
@@ -170,18 +146,14 @@ button:hover{
 
 <div class="container">
 
-    <!-- Banner -->
     <div class="banner">
         <img src="banner_desa.jpg" alt="Banner Desa">
     </div>
 
-    <!-- Logo -->
-    <div class="logo-wrapper">
-        <img src="logo_desa_slendro.png" class="logo" alt="Logo Desa">
-    </div>
-
-    <!-- Card -->
     <div class="card">
+
+        <!-- Logo -->
+        <img src="logo_desa_slendro.png" class="logo" alt="Logo Desa">
 
         <h2>Kalkulator Umur</h2>
         <div class="subtitle">Pemerintah Desa Slendro</div>
@@ -196,14 +168,12 @@ button:hover{
 
         <div class="result" id="hasil"></div>
 
-        <!-- Running Profile -->
+        <!-- Running Text -->
         <div class="running-profile">
-            <div class="marquee-container">
-                <div class="marquee-track">
-                    <img src="foto_saya.jpg" class="foto-bulat">
-                    <div class="running-text">
-                        👋 Selamat datang di Website Resmi Desa Slendro. Pemerintah Desa siap melayani masyarakat dengan sepenuh hati.
-                    </div>
+            <div class="marquee">
+                <img src="foto_saya.jpg" class="foto-bulat">
+                <div class="running-text">
+                    👋 Selamat datang di Website Resmi Desa Slendro. Pemerintah Desa siap melayani masyarakat dengan sepenuh hati.
                 </div>
             </div>
         </div>
